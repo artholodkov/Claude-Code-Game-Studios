@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CCGS Commands Admin</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>CCGS Commands Admin</h1>
+      <p class="subtitle">Simple visual list of available slash commands.</p>
+
+      <label for="search" class="label">Search commands</label>
+      <input id="search" class="search" type="text" placeholder="Type /design, /team, /test..." />
+
+      <p id="meta" class="meta">Loading...</p>
+      <ul id="commands" class="list"></ul>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

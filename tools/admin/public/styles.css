@@ -1,0 +1,90 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  background: #111827;
+  color: #f3f4f6;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+h1 {
+  margin: 0 0 8px;
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  margin: 0 0 20px;
+  color: #cbd5e1;
+}
+
+.label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.search {
+  width: 100%;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-sizing: border-box;
+}
+
+.meta {
+  margin: 14px 0;
+  color: #93c5fd;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.item {
+  border: 1px solid #334155;
+  border-radius: 8px;
+  background: #0b1220;
+  padding: 10px 12px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.command {
+  font-size: 1rem;
+  color: #a7f3d0;
+}
+
+.skill {
+  color: #d8b4fe;
+  font-size: 0.9rem;
+}
+
+.path {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.empty {
+  color: #fca5a5;
+}

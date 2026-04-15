@@ -1,0 +1,19 @@
+{
+  "name": "claude-code-game-studios",
+  "version": "1.0.0",
+  "description": "Claude Code Game Studios with a minimal commands admin UI.",
+  "main": "tools/admin/server.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "admin": "node tools/admin/server.js",
+    "test": "echo \"No tests configured\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}

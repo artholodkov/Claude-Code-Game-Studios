@@ -5,54 +5,56 @@
 
 ## Engine & Language
 
-- **Engine**: [TO BE CONFIGURED — run /setup-engine]
-- **Language**: [TO BE CONFIGURED]
-- **Rendering**: [TO BE CONFIGURED]
-- **Physics**: [TO BE CONFIGURED]
+- **Engine**: Three.js r170+ (Browser / WebGL renderer)
+- **Language**: JavaScript (ES2022 modules)
+- **Rendering**: WebGL via Three.js; orthographic camera for isometric view
+- **Physics**: Custom (no physics library needed for Tetris-style games)
 
 ## Input & Platform
 
 <!-- Written by /setup-engine. Read by /ux-design, /ux-review, /test-setup, /team-ui, and /dev-story -->
 <!-- to scope interaction specs, test helpers, and implementation to the correct input methods. -->
 
-- **Target Platforms**: [TO BE CONFIGURED — e.g., PC, Console, Mobile, Web]
-- **Input Methods**: [TO BE CONFIGURED — e.g., Keyboard/Mouse, Gamepad, Touch, Mixed]
-- **Primary Input**: [TO BE CONFIGURED — the dominant input for this game]
-- **Gamepad Support**: [TO BE CONFIGURED — Full / Partial / None]
-- **Touch Support**: [TO BE CONFIGURED — Full / Partial / None]
-- **Platform Notes**: [TO BE CONFIGURED — any platform-specific UX constraints]
+- **Target Platforms**: Web / Browser
+- **Input Methods**: Keyboard (primary), Gamepad (partial)
+- **Primary Input**: Keyboard
+- **Gamepad Support**: Partial
+- **Touch Support**: None (MVP)
+- **Platform Notes**: Must run in modern browsers (Chrome, Firefox, Safari). No server required — static HTML deployment.
 
 ## Naming Conventions
 
-- **Classes**: [TO BE CONFIGURED]
-- **Variables**: [TO BE CONFIGURED]
-- **Signals/Events**: [TO BE CONFIGURED]
-- **Files**: [TO BE CONFIGURED]
-- **Scenes/Prefabs**: [TO BE CONFIGURED]
-- **Constants**: [TO BE CONFIGURED]
+- **Classes**: PascalCase (e.g., `VoxelBlock`, `GameBoard`, `IsometricCamera`)
+- **Variables/functions**: camelCase (e.g., `moveSpeed`, `dropPiece`, `clearLayer`)
+- **Events/callbacks**: camelCase with `on` prefix (e.g., `onLayerCleared`, `onGameOver`)
+- **Files**: camelCase matching main export (e.g., `gameBoard.js`, `voxelRenderer.js`)
+- **Scenes/Prefabs**: N/A — Three.js uses scene graph objects directly
+- **Constants**: UPPER_SNAKE_CASE (e.g., `BOARD_WIDTH`, `DROP_INTERVAL_MS`)
 
 ## Performance Budgets
 
-- **Target Framerate**: [TO BE CONFIGURED]
-- **Frame Budget**: [TO BE CONFIGURED]
-- **Draw Calls**: [TO BE CONFIGURED]
-- **Memory Ceiling**: [TO BE CONFIGURED]
+- **Target Framerate**: 60fps
+- **Frame Budget**: 16.6ms
+- **Draw Calls**: <200 per frame (merge static voxels where possible)
+- **Memory Ceiling**: <256MB JS heap
 
 ## Testing
 
-- **Framework**: [TO BE CONFIGURED]
-- **Minimum Coverage**: [TO BE CONFIGURED]
-- **Required Tests**: Balance formulas, gameplay systems, networking (if applicable)
+- **Framework**: Vitest (unit tests), manual browser smoke checks
+- **Minimum Coverage**: Core game logic (board state, collision, scoring)
+- **Required Tests**: Piece collision, layer clear, score formula, game-over detection
 
 ## Forbidden Patterns
 
-<!-- Add patterns that should never appear in this project's codebase -->
-- [None configured yet — add as architectural decisions are made]
+- No `var` — use `const`/`let` only
+- No direct DOM manipulation outside `src/ui/` — all game rendering via Three.js
+- No magic numbers — all tuning values in `src/config/gameConfig.js`
+- No `console.log` in production builds
 
 ## Allowed Libraries / Addons
 
-<!-- Add approved third-party dependencies here -->
-- [None configured yet — add as dependencies are approved]
+- `three` r170+ — 3D rendering engine
+- `vite` — build tool and dev server
 
 ## Architecture Decisions Log
 
@@ -65,23 +67,22 @@
 <!-- Read by /code-review, /architecture-decision, /architecture-review, and team skills -->
 <!-- to know which specialist to spawn for engine-specific validation. -->
 
-- **Primary**: [TO BE CONFIGURED — run /setup-engine]
-- **Language/Code Specialist**: [TO BE CONFIGURED]
-- **Shader Specialist**: [TO BE CONFIGURED]
-- **UI Specialist**: [TO BE CONFIGURED]
-- **Additional Specialists**: [TO BE CONFIGURED]
-- **Routing Notes**: [TO BE CONFIGURED]
+- **Primary**: lead-programmer (web/JS architecture decisions)
+- **Language/Code Specialist**: gameplay-programmer (.js game logic files)
+- **Shader Specialist**: technical-artist (.glsl shader files, Three.js materials)
+- **UI Specialist**: ui-programmer (DOM UI, HUD overlays)
+- **Additional Specialists**: N/A
+- **Routing Notes**: For Three.js-specific API questions use WebSearch to verify current r170+ API — LLM training may not cover latest releases.
 
 ### File Extension Routing
 
 <!-- Skills use this table to select the right specialist per file type. -->
-<!-- If a row says [TO BE CONFIGURED], fall back to Primary for that file type. -->
 
 | File Extension / Type | Specialist to Spawn |
 |-----------------------|---------------------|
-| Game code (primary language) | [TO BE CONFIGURED] |
-| Shader / material files | [TO BE CONFIGURED] |
-| UI / screen files | [TO BE CONFIGURED] |
-| Scene / prefab / level files | [TO BE CONFIGURED] |
-| Native extension / plugin files | [TO BE CONFIGURED] |
-| General architecture review | Primary |
+| Game logic (.js — board, pieces, scoring) | gameplay-programmer |
+| Rendering (.js — Three.js scene, camera, lights) | lead-programmer |
+| Shader files (.glsl, .vert, .frag) | technical-artist |
+| UI / HUD (.js DOM layer, .css) | ui-programmer |
+| Config / balance (.js config files) | gameplay-programmer |
+| General architecture review | lead-programmer |

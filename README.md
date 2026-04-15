@@ -163,6 +163,23 @@ All hooks fail gracefully if optional tools are missing — nothing breaks, you 
    - `/setup-engine godot 4.6` — configure your engine if you already know
    - `/project-stage-detect` — analyze an existing project
 
+### Commands Admin UI (Simple)
+
+Use a very lightweight local admin page to visualize available slash commands.
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Start the admin server:
+   ```bash
+   npm run admin
+   ```
+3. Open:
+   [http://localhost:3000](http://localhost:3000)
+
+The page auto-discovers commands by scanning `.claude/skills/*/SKILL.md`.
+
 ## Upgrading
 
 Already using an older version of this template? See [UPGRADING.md](UPGRADING.md)

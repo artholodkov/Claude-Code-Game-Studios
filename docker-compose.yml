@@ -1,0 +1,16 @@
+services:
+  studio:
+    image: alpine:3.20
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    command: ["sh", "-lc", "while true; do sleep 3600; done"]
+    healthcheck:
+      test: ["CMD", "sh", "-lc", "test -d /workspace -a -f /workspace/README.md"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 5s
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
